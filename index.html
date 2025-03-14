@@ -19,7 +19,9 @@
 
     <div class="container" id="signup-container" style="display: none;">
         <h1>Sign Up</h1>
-        <form onsubmit="return handleSignUp(event)" id="signup-form">
+        <form onsubmit="return handleSignUp(event)" id="signup-form" enctype="multipart/form-data">
+            <input type="file" id="profile-pic" accept="image/*">
+            <p>If no profile picture is selected, a default avatar will be used.</p>
             <input type="number" id="age" placeholder="Enter Age" required min="13" max="19">
             <input type="text" placeholder="Enter Name" required>
             <input type="email" placeholder="Enter Email" required>
@@ -31,7 +33,7 @@
 
     <div class="container" id="login-container" style="display: none;">
         <h1>Login</h1>
-        <form>
+        <form onsubmit="return handleLogin(event)" id="login-form">
             <input type="email" placeholder="Enter Email" required>
             <input type="password" placeholder="Enter Password" required>
             <button type="submit">Login</button>
@@ -40,6 +42,22 @@
     </div>
 
     <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            let email = document.querySelector('#login-form input[type="email"]').value;
+            let password = document.querySelector('#login-form input[type="password"]').value;
+            
+            let storedEmail = localStorage.getItem('userEmail');
+            let storedPassword = localStorage.getItem('userPassword');
+            
+            if (email === storedEmail && password === storedPassword) {
+                alert('Login successful!');
+                window.location.href = 'home.html'; // Redirect to home page
+            } else {
+                alert('Invalid email or password.');
+            }
+        }
         function handleSignUp(event) {
             event.preventDefault(); // Prevent the page from reloading
             
@@ -48,10 +66,15 @@
             let age = document.querySelector('#signup-form input[type="number"]').value;
             let password = document.querySelector('#signup-form input[type="password"]').value;
             
-            if (name && email && password && age >= 13 && age <= 19) {
+            let profilePic = document.getElementById('profile-pic').files[0];
+                let profilePicURL = profilePic ? URL.createObjectURL(profilePic) : 'default-avatar.png';
+                
+                if (name && email && password && age >= 13 && age <= 19) {
+                    localStorage.setItem('userProfilePic', profilePicURL);
                 localStorage.setItem('userName', name);
                 localStorage.setItem('userEmail', email);
                 localStorage.setItem('userPassword', password);
+                    localStorage.setItem('userAge', age);
                 alert('Account created successfully!');
                 showForm('login'); // Redirect to login form
             } else {
