@@ -8,8 +8,48 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Home Page</h1>
-        <p>This is the main home page after logging in.</p>
+        <h1>Welcome to the Teen Chat Room</h1>
+        <p>Connect with friends, join discussions, and enjoy the community!</p>
+        <nav>
+            <a href="profile.html">Profile</a>
+            <a href="chat.html">Chat Room</a>
+            <a href="inbox.html">Inbox</a>
+            <a href="friends.html">Friends</a>
+            <a href="private-chat.html">Private Chats</a>
+            <a href="logout.html">Logout</a>
+        </nav>
     </div>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('home-background.jpg');
+            background-size: cover;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background: blue;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background: darkblue;
+        }
+    </style>
 </body>
 </html>
