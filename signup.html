@@ -44,5 +44,67 @@
             window.location.href = 'login.html'; // Redirect to login page
         }
     </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('signup-background.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+        .btn, button {
+            display: block;
+            width: 80%;
+            padding: 12px;
+            margin: 10px auto;
+            background: blue;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover, button:hover {
+            background: darkblue;
+            transform: scale(1.05);
+        }
+        input {
+            display: block;
+            width: 80%;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </body>
 </html>
