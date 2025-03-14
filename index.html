@@ -19,7 +19,8 @@
 
     <div class="container" id="signup-container" style="display: none;">
         <h1>Sign Up</h1>
-        <form>
+        <form onsubmit="return handleSignUp(event)" id="signup-form">
+            <input type="number" id="age" placeholder="Enter Age" required min="13" max="19">
             <input type="text" placeholder="Enter Name" required>
             <input type="email" placeholder="Enter Email" required>
             <input type="password" placeholder="Enter Password" required>
@@ -39,6 +40,38 @@
     </div>
 
     <script>
+        function handleSignUp(event) {
+            event.preventDefault(); // Prevent the page from reloading
+            
+            let name = document.querySelector('#signup-form input[type="text"]').value;
+            let email = document.querySelector('#signup-form input[type="email"]').value;
+            let age = document.querySelector('#signup-form input[type="number"]').value;
+            let password = document.querySelector('#signup-form input[type="password"]').value;
+            
+            if (name && email && password && age >= 13 && age <= 19) {
+                localStorage.setItem('userName', name);
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userPassword', password);
+                alert('Account created successfully!');
+                showForm('login'); // Redirect to login form
+            } else {
+                alert('Please
+            }
+        }
+        function handleSignUp(event) {
+            event.preventDefault(); // Prevent the page from reloading
+            
+            let name = document.querySelector('#signup-form input[type="text"]').value;
+            let email = document.querySelector('#signup-form input[type="email"]').value;
+            let password = document.querySelector('#signup-form input[type="password"]').value;
+            
+            if (name && email && password) {
+                alert('Account created successfully!');
+                showForm('login'); // Redirect to login form
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
         function showForm(formType) {
             document.getElementById('welcome-container').style.display = 'none';
             document.getElementById('signup-container').style.display = 'none';
