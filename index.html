@@ -3,38 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Teen Chat Room</title>
+    <title>Sign Up or Login</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <img src="assets/logo.png" alt="Chat Room Logo" class="logo">
+    <div class="container">
         <h1>Welcome to The Teen Chat Room</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="signup.html">Sign Up</a>
-            <a href="login.html">Login</a>
-            <a href="profile.html">Profile</a>
-            <a href="chat.html">Chat Room</a>
-            <a href="inbox.html">Inbox</a>
-            <a href="friends.html">Friends</a>
-            <a href="private-chat.html">Private Chats</a>
-        </nav>
-    </header>
-    <main>
-        <div class="chat-container">
-            <h2>Public Chat Room</h2>
-            <div id="chatBox"></div>
-            <input type="text" id="messageInput" placeholder="Type a message...">
-            <button onclick="sendMessage()">Send</button>
-            <input type="file" id="imageUpload" accept="image/*">
-            <button onclick="sendImage()">Send Image</button>
-            <button onclick="sendEmoji('😊')">😊</button>
-            <button onclick="sendEmoji('😂')">😂</button>
-            <button onclick="sendEmoji('❤️')">❤️</button>
+        <p>Please sign up or log in to continue.</p>
+        <div class="buttons">
+            <a href="signup.html" class="btn">Sign Up</a>
+            <a href="login.html" class="btn">Login</a>
         </div>
-    </main>
+    </div>
 </body>
 </html>
 
@@ -42,65 +23,30 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background-image: url('assets/chat-background.jpg');
+        background-image: url('assets/signup-background.jpg');
         background-size: cover;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
     }
-    .logo {
-        width: 150px;
+    .container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
-    .chat-container {
-        background: rgba(255, 255, 255, 0.8);
-        padding: 20px;
-        margin: 20px auto;
-        width: 50%;
-        border-radius: 8px;
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        background: blue;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
     }
-    input, button {
-        margin-top: 10px;
-        padding: 10px;
-        width: 80%;
+    .btn:hover {
+        background: darkblue;
     }
 </style>
-
-<!-- script.js -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const links = document.querySelectorAll("nav a");
-        links.forEach(link => {
-            link.addEventListener("click", function(event) {
-                event.preventDefault();
-                window.location.href = this.href;
-            });
-        });
-    });
-
-    function sendMessage() {
-        let messageInput = document.getElementById("messageInput");
-        let chatBox = document.getElementById("chatBox");
-        if (messageInput.value.trim() !== "") {
-            let message = document.createElement("p");
-            message.textContent = messageInput.value;
-            chatBox.appendChild(message);
-            messageInput.value = "";
-        }
-    }
-    
-    function sendEmoji(emoji) {
-        let chatBox = document.getElementById("chatBox");
-        let message = document.createElement("p");
-        message.textContent = emoji;
-        chatBox.appendChild(message);
-    }
-    
-    function sendImage() {
-        let fileInput = document.getElementById("imageUpload");
-        let chatBox = document.getElementById("chatBox");
-        if (fileInput.files.length > 0) {
-            let img = document.createElement("img");
-            img.src = URL.createObjectURL(fileInput.files[0]);
-            img.style.maxWidth = "200px";
-            chatBox.appendChild(img);
-        }
-    }
-</script>
