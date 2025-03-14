@@ -59,7 +59,8 @@
             if (userData && userData.password === password) {
                 alert('Login successful!');
                 window.location.href = 'home.html';
-            } else {
+            
+        } else {
                 alert('Invalid email or password.');
             }
         } else {
@@ -69,24 +70,15 @@
                 alert('Invalid email or password.');
             }
         }
-        function handleSignUp(event) {
-            event.preventDefault();
-            
-            let name = document.querySelector('#signup-form input[type="text"]').value;
-            let email = document.querySelector('#signup-form input[type="email"]').value;
-            let age = document.querySelector('#signup-form input[type="number"]').value;
-            let password = document.querySelector('#signup-form input[type="password"]').value;
-            let profilePic = document.getElementById('profile-pic').files[0];
-            let profilePicURL = profilePic ? URL.createObjectURL(profilePic) : 'default-avatar.png';
-            
-            if (name && email && password && age >= 13 && age <= 19) {
-                let userData = {
-                    name: name,
-                    email: email,
-                    age: age,
-                    password: password,
-                    profilePic: profilePicURL
-                };
+        ;
+                
+                saveUserData(email, userData);
+                alert('Account created successfully!');
+                showForm('login');
+            } else {
+                alert('Please fill in all fields and make sure you are between 13 and 19 years old.');
+            }
+        };
                 
                 saveUserData(email, userData);
                 alert('Account created successfully!');
@@ -174,4 +166,3 @@
         border-radius: 5px;
     }
 </style>
-
