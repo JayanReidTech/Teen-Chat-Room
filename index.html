@@ -17,10 +17,16 @@
 
         <!-- Sign Up & Login Buttons -->
         <div class="buttons">
-            <button class="btn" onclick="window.location.href='signup.html'">Sign Up</button>
-            <button class="btn" onclick="window.location.href='login.html'">Login</button>
+            <button class="btn" onclick="redirectTo('signup.html')">Sign Up</button>
+            <button class="btn" onclick="redirectTo('login.html')">Login</button>
         </div>
     </div>
+
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
 
     <style>
         body {
@@ -34,6 +40,7 @@
             justify-content: center;
             height: 100vh;
             flex-direction: column;
+            margin: 0;
         }
         .container {
             background: rgba(255, 255, 255, 0.95);
