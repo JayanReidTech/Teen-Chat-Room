@@ -6,7 +6,7 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="fade-in">
     <div class="container">
         <h1>Create an Account</h1>
         <form id="signup-form" onsubmit="return handleSignUp(event)" enctype="multipart/form-data">
@@ -40,8 +40,10 @@
             let userData = { name, email, age, password, profilePicURL };
             localStorage.setItem(email, JSON.stringify(userData));
 
-            alert('Account created successfully!');
-            window.location.href = 'login.html'; // Redirect to login page
+            document.body.classList.add('fade-out'); // Apply fade out effect
+            setTimeout(() => {
+                window.location.href = 'login.html'; // Redirect to login page
+            }, 300);
         }
     </script>
 
@@ -58,6 +60,14 @@
             height: 100vh;
             flex-direction: column;
             margin: 0;
+            background-color: black; /* Prevents white screen flash */
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        .fade-out {
+            animation: fadeOut 0.3s ease-in-out forwards;
         }
         .container {
             background: rgba(255, 255, 255, 0.95);
@@ -65,7 +75,6 @@
             border-radius: 12px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
             width: 350px;
-            animation: fadeIn 1s ease-in-out;
         }
         h1 {
             font-size: 24px;
@@ -75,7 +84,7 @@
             font-size: 16px;
             color: #666;
         }
-        .btn, button {
+        button {
             display: block;
             width: 80%;
             padding: 12px;
@@ -89,7 +98,7 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .btn:hover, button:hover {
+        button:hover {
             background: darkblue;
             transform: scale(1.05);
         }
@@ -102,8 +111,12 @@
             border-radius: 5px;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
         }
     </style>
 </body>
