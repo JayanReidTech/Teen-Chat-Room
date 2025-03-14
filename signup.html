@@ -3,28 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to The Teen Chat Room</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <!-- Chat Room Logo -->
-        <img src="logo.png" alt="Chat Room Logo" class="logo">
-        
-        <!-- Welcome Message -->
-        <h1>Welcome to The Teen Chat Room</h1>
-        <p>Meet new friends, chat in groups, and have fun! Please sign up or log in to continue.</p>
-
-        <!-- Sign Up & Login Buttons -->
-        <div class="buttons">
-            <button class="btn" onclick="redirectTo('signup.html')">Sign Up</button>
-            <button class="btn" onclick="redirectTo('login.html')">Login</button>
-        </div>
+        <h1>Create an Account</h1>
+        <form id="signup-form" onsubmit="return handleSignUp(event)" enctype="multipart/form-data">
+            <input type="file" id="profile-pic" accept="image/*">
+            <p>If no profile picture is selected, a default avatar will be used.</p>
+            <input type="number" id="age" placeholder="Enter Age" required min="13" max="19">
+            <input type="text" id="name" placeholder="Enter Name" required>
+            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login</a></p>
     </div>
 
     <script>
-        function redirectTo(page) {
-            window.location.href = page;
+        function handleSignUp(event) {
+            event.preventDefault();
+
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let age = parseInt(document.getElementById('age').value);
+            let password = document.getElementById('password').value;
+            let profilePic = document.getElementById('profile-pic').files[0];
+            let profilePicURL = profilePic ? URL.createObjectURL(profilePic) : 'default-avatar.png';
+
+            if (age < 13 || age > 19) {
+                alert('You must be between 13 and 19 years old to sign up.');
+                return;
+            }
+
+            let userData = { name, email, age, password, profilePicURL };
+            localStorage.setItem(email, JSON.stringify(userData));
+
+            alert('Account created successfully!');
+            window.location.href = 'login.html'; // Redirect to login page
         }
     </script>
 
@@ -50,10 +67,6 @@
             width: 350px;
             animation: fadeIn 1s ease-in-out;
         }
-        .logo {
-            width: 100px;
-            margin-bottom: 15px;
-        }
         h1 {
             font-size: 24px;
             color: #333;
@@ -62,7 +75,7 @@
             font-size: 16px;
             color: #666;
         }
-        .btn {
+        .btn, button {
             display: block;
             width: 80%;
             padding: 12px;
@@ -76,9 +89,17 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .btn:hover {
+        .btn:hover, button:hover {
             background: darkblue;
             transform: scale(1.05);
+        }
+        input {
+            display: block;
+            width: 80%;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
